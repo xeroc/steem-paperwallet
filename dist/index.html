@@ -38,9 +38,14 @@
       <label><i class="fa fa-key"></i> Password</label>
       <input class="form-control" class="form-control" type=password name="password" />
      </div>
+     <div class="form-group">
+      <label><i class="fa fa-key"></i> Confirm Password</label>
+      <input class="form-control" class="form-control" type=password name="passwordConfirm" />
+     </div>
     </form>
    </div>
-   <span id="pwdlengthwarning" style="color:red;">Keep typing, your password is still too short</span>
+   <p id="pwdlengthwarning" style="color:red;">Keep typing, your password is still too short</p>
+   <p id="pwdmismatchhwarning" style="color:red;">Passwords don't match</p>
    <div id="result">
     <button class="btn btn-primary" onClick="window.print();"><i class="fa fa-print"></i> Print</button>
     <small>The provided password will <b>NOT</b> be shown on the print</small>
@@ -97,6 +102,6 @@
     </table>
    </div>
   </div>
-  <script src="bundle.js"></script>
+  <script src="bundle.min.js"></script>
  </body>
 </html>

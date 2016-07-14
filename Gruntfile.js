@@ -4,7 +4,7 @@ module.exports = function(grunt) {
   uglify: {
    build: {
     src: 'bundle.js',
-    dest: 'bundle.min.js'
+    dest: 'dist/bundle.min.js'
    }
   },
   browserify: {

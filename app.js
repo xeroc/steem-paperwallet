@@ -2,6 +2,7 @@ var $ = require('jquery');
 var {Login} = require("graphenejs-lib");
 var $result = $('#result').hide();
 var $pwdlengthwarning = $("#pwdlengthwarning").hide();
+var $pwdmismatchWarning = $("#pwdmismatchhwarning").hide();
 var prefix = "STM";
 
 import QRCode from 'qrcode';
@@ -18,6 +19,18 @@ function verifyPasswordLength(w) {
  }
 }
 
+window.$ = $;
+function verifyPasswordMatch(password, passwordConfirm) {
+ if (password != passwordConfirm) {
+  $pwdmismatchWarning.show();
+  $result.hide();
+  return false;
+ } else {
+  $pwdmismatchWarning.hide();
+  return true;
+ }
+}
+
 function processKey(p, type) {
  $('#' + type + '_key').text(p["pubKeys"][type]);
  $('#' + type + '_pkey').text(p["privKeys"][type].toWif());
@@ -29,17 +42,24 @@ function processKey(p, type) {
  });
 }
 
-$('input[name=password]').keypress(function() {
+function processKeyPress() {
  var name = $('input[name=name]').val();
- var passwod = $('input[name=password]').val();
- if (!verifyPasswordLength(passwod) || !name) {
+ var password = $('input[name=password]').val();
+ var passwordConfirm = $('input[name=passwordConfirm]').val();
+ if (!verifyPasswordLength(password) || !name) {
+  return;
+ }
+ if (!verifyPasswordMatch(password, passwordConfirm)) {
   return;
  }
  $result.hide();
- var p = Login.generateKeys(name, passwod, ["owner", "active", "posting", "memo"], prefix);
+ var p = Login.generateKeys(name, password, ["owner", "active", "posting", "memo"], prefix);
  processKey(p, "owner")
  processKey(p, "active")
  processKey(p, "posting")
  processKey(p, "memo")
  $result.show();
-});
+}
+
+$('input[name=password]').keyup(processKeyPress);
+$('input[name=passwordConfirm]').keyup(processKeyPress);

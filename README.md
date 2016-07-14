@@ -7,7 +7,7 @@
 
 ### Usage
 
-    open index.html
+    open dist/index.html
 
 ### Remark
 
