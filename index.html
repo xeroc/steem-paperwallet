@@ -4,12 +4,12 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
   <link href='https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css' rel='stylesheet'>
   <style>
-   .key {
-    font-family: monospace;
-    border: 1px solid #999;
-    background: #eee;
-    padding:.2em;
-   }
+    .key {
+     font-family: monospace;
+     border: 1px solid #999;
+     background: #eee;
+     padding:.2em;
+    }
    .pkey {
     font-family: monospace;
     border: 1px solid #999;
@@ -19,23 +19,31 @@
    .headline {
     background: #eee;
    }
+
+   @media print {
+
+   }
   </style>
  </head>
  <body>
-  <div class="container">
+  <div class="container-fluid">
    <h2>Steem Permission Keys</h2>
-   <form>
-    <div class="form-group">
-     <label>Account Name</label>
-     <input class="form-control" type=text name="name" />
-    </div>
-    <div class="form-group">
-     <label>Password</label>
-     <input class="form-control" class="form-control" type=password name="password" />
-    </div>
-   </form>
+   <div class="hidden-print">
+    <form>
+     <div class="form-group">
+      <label><i class="fa fa-user"></i> Account Name</label>
+      <input class="form-control" type=text name="name" />
+     </div>
+     <div class="form-group">
+      <label><i class="fa fa-key"></i> Password</label>
+      <input class="form-control" class="form-control" type=password name="password" />
+     </div>
+    </form>
+   </div>
    <span id="pwdlengthwarning" style="color:red;">Keep typing, your password is still too short</span>
-   <div class="result">
+   <div id="result">
+    <button class="btn btn-primary" onClick="window.print();"><i class="fa fa-print"></i> Print</button>
+    <small>The provided password will <b>NOT</b> be shown on the print</small>
     <table class="table">
      <thead>
       <tr>
@@ -51,7 +59,7 @@
       <tr>
        <td><canvas id="owner_pub"></canvas></td>
        <td><p><span id="owner_key" class="key"></span></p>
-           <p><span id="owner_pkey" class="pkey"></span></p>
+        <p><span id="owner_pkey" class="pkey"></span></p>
        </td>
        <td><canvas id="owner_wif"></canvas></td>
       </tr>
@@ -61,7 +69,7 @@
       <tr>
        <td><canvas id="active_pub"></canvas></td>
        <td><p><span id="active_key" class="key"></span></p>
-           <p><span id="active_pkey" class="pkey"></span></p>
+        <p><span id="active_pkey" class="pkey"></span></p>
        </td>
        <td><canvas id="active_wif"></canvas></td>
       </tr>
@@ -71,7 +79,7 @@
       <tr>
        <td><canvas id="posting_pub"></canvas></td>
        <td><p><span id="posting_key" class="key"></span></p>
-           <p><span id="posting_pkey" class="pkey"></span></p>
+        <p><span id="posting_pkey" class="pkey"></span></p>
        </td>
        <td><canvas id="posting_wif"></canvas></td>
       </tr>
@@ -81,7 +89,7 @@
       <tr>
        <td><canvas id="memo_pub"></canvas></td>
        <td><p><span id="memo_key" class="key"></span></p>
-           <p><span id="memo_pkey" class="pkey"></span></p>
+        <p><span id="memo_pkey" class="pkey"></span></p>
        </td>
        <td><canvas id="memo_wif"></canvas></td>
       </tr>
