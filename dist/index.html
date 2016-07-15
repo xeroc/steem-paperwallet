@@ -3,15 +3,18 @@
  <head lang="en" charset="utf-8">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
   <link href='https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css' rel='stylesheet'>
+  <title>Steem Paperwallet Generator</title>
   <style>
     .key {
      font-family: monospace;
+     font-size: 9pt;
      border: 1px solid #999;
      background: #eee;
      padding:.2em;
     }
    .pkey {
     font-family: monospace;
+    font-size: 9pt;
     border: 1px solid #999;
     background: #eee;
     padding:.2em;
@@ -19,15 +22,33 @@
    .headline {
     background: #eee;
    }
-
-   @media print {
-
+   .password{
+    position: relative;
+   }
+   .password input[type="password"]{
+    padding-right: 30px;
+   }
+   .password .glyphicon {
+    right: 15px;
+    position: absolute;
+    top: 12px;
+    cursor:pointer;
    }
   </style>
  </head>
  <body>
   <div class="container-fluid">
    <h2>Steem Permission Keys</h2>
+   <div id="printpassword" style="display:none">
+    <div class="panel panel-danger">
+     <div class="panel-heading">
+      <h3 class="panel-title">Plaintext Password</h3>
+     </div>
+     <div class="panel-body">
+      <div id="printplainpassword" class="key"></div>
+     </div>
+    </div>
+   </div>
    <div class="hidden-print">
     <form>
      <div class="form-group">
@@ -36,19 +57,28 @@
      </div>
      <div class="form-group">
       <label><i class="fa fa-key"></i> Password</label>
-      <input class="form-control" class="form-control" type=password name="password" />
+      <div class="password">
+       <input class="form-control" class="form-control" type=password name="password" />
+       <span class="glyphicon glyphicon-eye-open"></span>
+      </div>
      </div>
      <div class="form-group">
       <label><i class="fa fa-key"></i> Confirm Password</label>
-      <input class="form-control" class="form-control" type=password name="passwordConfirm" />
+      <div class="password">
+       <input class="form-control" class="form-control" type=password name="passwordConfirm" />
+       <span class="glyphicon glyphicon-eye-open"></span>
+      </div>
+     </div>
+     <div class="form-group hidden-print result">
+      <label></label>
+      <button class="btn btn-primary" id="printBtn" type="button"><i class="fa fa-print"></i> Print</button>
+      <button class="btn btn-primary" id="printWithPWdBtn" type="button"><i class="fa fa-print"></i> Print with Password</button>
      </div>
     </form>
    </div>
    <p id="pwdlengthwarning" style="color:red;">Keep typing, your password is still too short</p>
    <p id="pwdmismatchhwarning" style="color:red;">Passwords don't match</p>
-   <div id="result">
-    <button class="btn btn-primary" onClick="window.print();"><i class="fa fa-print"></i> Print</button>
-    <small>The provided password will <b>NOT</b> be shown on the print</small>
+   <div class="result">
     <table class="table">
      <thead>
       <tr>
@@ -59,14 +89,14 @@
      </thead>
      <tbody>
       <tr class="headline">
-       <th colspan=3 class="text-center">Owner Key</th>
+       <th colspan=3 class="text-center">Posting Key</th>
       </tr>
       <tr>
-       <td><canvas id="owner_pub"></canvas></td>
-       <td><p><span id="owner_key" class="key"></span></p>
-        <p><span id="owner_pkey" class="pkey"></span></p>
+       <td><canvas id="posting_pub"></canvas></td>
+       <td><p><span id="posting_key" class="key"></span></p>
+        <p><span id="posting_pkey" class="pkey"></span></p>
        </td>
-       <td><canvas id="owner_wif"></canvas></td>
+       <td><canvas id="posting_wif"></canvas></td>
       </tr>
       <tr class="headline">
        <th colspan=3 class="text-center">Active Key</th>
@@ -79,14 +109,14 @@
        <td><canvas id="active_wif"></canvas></td>
       </tr>
       <tr class="headline">
-       <th colspan=3 class="text-center">Posting Key</th>
+       <th colspan=3 class="text-center">Owner Key</th>
       </tr>
       <tr>
-       <td><canvas id="posting_pub"></canvas></td>
-       <td><p><span id="posting_key" class="key"></span></p>
-        <p><span id="posting_pkey" class="pkey"></span></p>
+       <td><canvas id="owner_pub"></canvas></td>
+       <td><p><span id="owner_key" class="key"></span></p>
+        <p><span id="owner_pkey" class="pkey"></span></p>
        </td>
-       <td><canvas id="posting_wif"></canvas></td>
+       <td><canvas id="owner_wif"></canvas></td>
       </tr>
       <tr class="headline">
        <th colspan=3 class="text-center">Memo Key</th>
