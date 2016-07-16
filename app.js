@@ -67,12 +67,16 @@ $('input[name=name]').keyup(processKeyPress);
 $('input[name=password]').keyup(processKeyPress);
 $('input[name=passwordConfirm]').keyup(processKeyPress);
 
-$(".glyphicon-eye-open").mousedown(function(){
- $(this).prev().attr('type','text');
-}).mouseup(function(){
- $(this).prev().attr('type','password');
-}).mouseout(function(){
- $(this).prev().attr('type','password');
+$(".showpwdicon").click(function(){
+ if ($(this).prev().attr('type') == "text") {
+  $(this).prev().attr('type','password');
+  $(this).addClass('glyphicon-eye-open')
+  $(this).removeClass('glyphicon-eye-close')
+ } else {
+  $(this).prev().attr('type','text');
+  $(this).addClass('glyphicon-eye-close')
+  $(this).removeClass('glyphicon-eye-open')
+ }
 });
 
 $("#printBtn").click(function() {
