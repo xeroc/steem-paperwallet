@@ -47,6 +47,7 @@ function processKeyPress() {
  var password = $('input[name=password]').val();
  var passwordConfirm = $('input[name=passwordConfirm]').val();
  $('#printplainpassword').text(password);
+ $('#printplainusername').text(name);
 
  if (!verifyPasswordLength(password) || !name) {
   return;
