@@ -93,3 +93,21 @@ $("#printWithPWdBtn").click(function() {
  window.print();
  return false;
 });
+
+/* Prevent IE/Edge
+ ***********************/
+function incompatibleBrowser() {
+ alert("The browser you are using is not compatible with this webpage. Please get your self a real browser!");
+}
+
+if (/MSIE 7/i.test(navigator.userAgent) ||
+    /MSIE 8/i.test(navigator.userAgent) ||
+    /MSIE 9/i.test(navigator.userAgent) ||
+    /MSIE 10/i.test(navigator.userAgent)
+   ) {
+   incompatibleBrowser();
+}
+
+if (/Edge\/\d./i.test(navigator.userAgent)){
+   incompatibleBrowser();
+}
