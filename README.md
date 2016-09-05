@@ -1,6 +1,10 @@
 ## Generate a Paperwallet From a Password
 
 ### Installation
+#### Ubuntu dependencies
+```
+sudo apt-get install libcairo2-dev libjpeg-dev libgif-dev
+```
 
     npm install
     grunt

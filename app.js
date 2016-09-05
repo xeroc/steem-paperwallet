@@ -12,7 +12,7 @@ function verifyPasswordLength(w) {
  if (w.length >= 16) {
   $pwdlengthwarning.hide();
   return true;
- } else {
+ } else if (w.length > 0){
   $pwdlengthwarning.show();
   $result.hide();
   return false;
