@@ -37,6 +37,13 @@
    .pkey-label {
        padding-top: 40px;
    }
+   tr > td {
+       padding-top: 0;
+       padding-bottom: 0;
+   }
+   canvas {
+       height: 185px;
+   }
   </style>
  </head>
  <body>
@@ -85,16 +92,11 @@
    <p id="pwdmismatchhwarning" style="color:red;">Passwords don't match.</p>
    <div class="result">
     <table class="table">
-     <thead>
-      <tr>
-       <th>PublicKey</th>
-       <th>Raw</th>
-       <th>PrivateKey</th>
-      </tr>
-     </thead>
      <tbody>
       <tr class="headline">
-       <th colspan=3 class="text-center">Posting Key</th>
+          <th class="text-center">Public</th>
+          <th class="text-center">Posting Key</th>
+          <th class="text-center">Private</th>
       </tr>
       <tr>
        <td><canvas id="posting_pub"></canvas></td>
@@ -107,7 +109,9 @@
        <td><canvas id="posting_wif"></canvas></td>
       </tr>
       <tr class="headline">
-       <th colspan=3 class="text-center">Active Key</th>
+          <th class="text-center">Public</th>
+          <th class="text-center">Active Key</th>
+          <th class="text-center">Private</th>
       </tr>
       <tr>
        <td><canvas id="active_pub"></canvas></td>
@@ -120,7 +124,9 @@
        <td><canvas id="active_wif"></canvas></td>
       </tr>
       <tr class="headline">
-       <th colspan=3 class="text-center">Owner Key</th>
+          <th class="text-center">Public</th>
+          <th class="text-center">Owner Key</th>
+          <th class="text-center">Private</th>
       </tr>
       <tr>
        <td><canvas id="owner_pub"></canvas></td>
@@ -133,7 +139,9 @@
        <td><canvas id="owner_wif"></canvas></td>
       </tr>
       <tr class="headline">
-       <th colspan=3 class="text-center">Memo Key</th>
+          <th class="text-center">Public</th>
+          <th class="text-center">Memo Key</th>
+          <th class="text-center">Private</th>
       </tr>
       <tr>
        <td><canvas id="memo_pub"></canvas></td>
