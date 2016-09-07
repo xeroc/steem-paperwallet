@@ -6,8 +6,10 @@
 sudo apt-get install libcairo2-dev libjpeg-dev libgif-dev
 ```
 
+Once the dependencies are installed, do:
+
     npm install
-    grunt
+    npm run browserify
 
 ### Usage
 
@@ -16,4 +18,4 @@ sudo apt-get install libcairo2-dev libjpeg-dev libgif-dev
 ### Remark
 
 * You need to provide the account name
-* Passwords must be longer than 16 characters
+* Passwords must be at least 16 characters long
