@@ -12,7 +12,7 @@ function verifyPasswordLength(w) {
  if (w.length >= 16) {
   $pwdlengthwarning.hide();
   return true;
- } else {
+ } else if (w.length > 0){
   $pwdlengthwarning.show();
   $result.hide();
   return false;
@@ -47,7 +47,7 @@ function processKeyPress() {
  var password = $('input[name=password]').val();
  var passwordConfirm = $('input[name=passwordConfirm]').val();
  $('#printplainpassword').text(password);
- $('#printplainusername').text(name);
+ $('#printplainusername').text("account: " + name);
 
  if (!verifyPasswordLength(password) || !name) {
   return;
